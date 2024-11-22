@@ -1,0 +1,22 @@
+.search {
+	display: flex;
+	justify-content: center;
+
+	&--form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+        align-items: center;
+        gap: 1rem;
+	}
+
+    &--form_input {
+        padding: 0.5rem;
+    }
+
+    &--form_button {
+        padding: 0.5rem;
+        cursor: pointer;
+        width: 50%;
+    }
+}

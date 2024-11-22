@@ -1,0 +1,11 @@
+@use './colors' as *;
+
+.header { 
+    padding: 2rem 1rem;
+}
+
+
+.header--title { 
+    text-align: center;
+    color: $color-primary;
+}

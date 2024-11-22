@@ -41,7 +41,6 @@
 ## Project Structure
 
 ```
-/WeatherApp
 |-- /admin
 |   |-- pseudo code.md
 |   |-- instruction.md
@@ -56,4 +55,3 @@
 |-- readme.md
 ```
 
-mkdir -p WeatherApp/{admin,css,js,styles} && touch {css/style.css,js/app.js,styles/_styles.scss,index.html,style.scss}

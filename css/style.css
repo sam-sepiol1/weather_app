@@ -154,6 +154,23 @@ a:hover {
   width: 50%;
 }
 
+.weather {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.weather--card {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #E9E8E8;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  width: 25%;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
 .footer {
   text-align: center;
   padding: 1rem 0;

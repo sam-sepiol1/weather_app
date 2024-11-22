@@ -1,3 +1,5 @@
+import API_KEY from './API_KEY.js';
+
 let API_WEATHER_URL;
 let API_CITIES_URL;
 

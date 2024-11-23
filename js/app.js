@@ -86,11 +86,17 @@ searchInput.addEventListener('keyup', async (e) => {
     let cities = await getCities(city_name);
 
     for (const city of cities) {
+        let optionValue = city.name + ', ' + city.country + ', ' + city.state;
+        
         if (e.key === "ArrowDown" || e.key === "ArrowUp") {
             continue;
         }
+        if (!city.state) {
+            optionValue = city.name + ', ' + city.country;
+        }
+        
         const option = document.createElement('option');
-        option.value = city.name + ', ' + city.country + ', ' + city.state;
+        option.value = optionValue;
         document.querySelector('#cities').appendChild(option);
     }
 });

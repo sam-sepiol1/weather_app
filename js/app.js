@@ -31,16 +31,53 @@ async function getFlags() {
         .catch(error => console.error(error));
 }
 
-// function emoji(weather) {
-//     switch (weather.) {
-//         case value:
-            
-//             break;
+function emojiWeather(weather) {    
+    switch (weather.list[0].weather[0].main) {
+        case 'Rain':
+            return '🌧️';
+        case 'Clouds':
+            return '☁️';
+        case 'Snow':
+            return '❄️';
+        case 'Clear':
+            return '☀️';
+        case 'Drizzle':
+            return '🌦️';
+        case 'Thunderstorm':
+            return '⛈️';
+        case 'Sunny':
+            return '☀️';
+        default:
+            return '';
+
+    }
+}
+
+function emojiTemperature(weather) {
+    let temp = weather.list[0].main.temp - 273.15;
+    switch (true) {
+        case (temp <= 0):
+            return '❄️'; // Freezing
+        case (temp > 0 && temp <= 10):
+            return '🧊'; // Cold
+        case (temp > 10 && temp <= 20):
+            return '🌬️'; // Cool
+        case (temp > 20 && temp <= 30):
+            return '🌤️'; // Warm
+        case (temp > 30):
+            return '🔥'; // Hot
+        default:
+            return '';
+    }
     
-//         default:
-//             break;
-//     }
-// }
+}
+
+function emojiFlags(weather) {    
+    const flag = flags.find(flag => flag.code === weather.city.country);
+    if (flag) {
+        return flag.emoji;
+    }
+}
 
 searchInput.addEventListener('keyup', async (e) => {
 
@@ -59,6 +96,11 @@ searchInput.addEventListener('keyup', async (e) => {
 });
 
 searchButton.addEventListener('click', async (e) => {
+    const previousCard = document.querySelector('.weather--card');
+    if (previousCard) {
+        previousCard.remove();
+    }
+    
     e.preventDefault();
     city_name = searchInput.value;
     let city = await getCities(city_name);
@@ -73,24 +115,21 @@ searchButton.addEventListener('click', async (e) => {
 
     let title = document.createElement('h2');
     title.classList.add('weather--card_title');
-    title.textContent = city_name;
+    title.textContent = city_name + ' ' + emojiFlags(weather);
 
     let temp = document.createElement('p');
     temp.classList.add('weather--card_temp');
-    temp.textContent = temperature + '°C';
+    temp.textContent = emojiTemperature(weather) + ' ' + temperature + '°C';
 
     let description = document.createElement('p');
     description.classList.add('weather--card_description');
-    description.textContent = weather.list[0].weather[0].description;
+    description.textContent = emojiWeather(weather) + ' ' + weather.list[0].weather[0].description;
 
     card.appendChild(title);
     card.appendChild(temp);
     card.appendChild(description);
 
     weatherInfo.appendChild(card);
-    console.log(weather);
-    
-
 });
 
 

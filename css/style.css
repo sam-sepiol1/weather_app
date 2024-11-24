@@ -170,6 +170,14 @@ a:hover {
   -webkit-backdrop-filter: blur(6px);
 }
 
+.weather--card_temp {
+  font-size: 3rem;
+}
+
+.weather--card_description {
+  font-size: 2rem;
+}
+
 .footer {
   text-align: center;
   padding: 1rem 0;

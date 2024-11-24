@@ -26,7 +26,7 @@ async function getWeather(lat, lon) {
 }
 
 async function getFlags() {
-    return fetch('../js/flags.json')
+    return fetch('../json/flags.json')
         .then(response => response.json())
         .catch(error => console.error(error));
 }
@@ -57,15 +57,15 @@ function emojiTemperature(weather) {
     let temp = weather.list[0].main.temp - 273.15;
     switch (true) {
         case (temp <= 0):
-            return '❄️'; // Freezing
+            return '🥶'; 
         case (temp > 0 && temp <= 10):
-            return '🧊'; // Cold
+            return '😐'; 
         case (temp > 10 && temp <= 20):
-            return '🌬️'; // Cool
+            return '😊'; 
         case (temp > 20 && temp <= 30):
-            return '🌤️'; // Warm
+            return '😎'; 
         case (temp > 30):
-            return '🔥'; // Hot
+            return '🥵'; 
         default:
             return '';
     }

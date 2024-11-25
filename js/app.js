@@ -5,6 +5,7 @@ let API_CITIES_URL;
 
 const searchInput = document.querySelector('.search--form_input');
 const searchButton = document.querySelector('.search--form_button');
+const compareButton = document.querySelector('#search--form_button_compare');
 const weatherInfo = document.querySelector('.weather');
 const flags = await getFlags();
 
@@ -136,6 +137,39 @@ searchButton.addEventListener('click', async (e) => {
     card.appendChild(description);
 
     weatherInfo.appendChild(card);
+});
+
+compareButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    city_name = searchInput.value;
+    let city = await getCities(city_name);
+    let lat = city[0].lat;
+    let lon = city[0].lon;
+    let weather = await getWeather(lat, lon);
+    let temperature = Math.round(weather.list[0].main.temp - 273.15);
+
+
+    let card = document.createElement('div');
+    card.classList.add('weather--card');
+
+    let title = document.createElement('h2');
+    title.classList.add('weather--card_title');
+    title.textContent = city_name + ' ' + emojiFlags(weather);
+
+    let temp = document.createElement('p');
+    temp.classList.add('weather--card_temp');
+    temp.textContent = emojiTemperature(weather) + ' ' + temperature + '°C';
+
+    let description = document.createElement('p');
+    description.classList.add('weather--card_description');
+    description.textContent = emojiWeather(weather) + ' ' + weather.list[0].weather[0].description;
+
+    card.appendChild(title);
+    card.appendChild(temp);
+    card.appendChild(description);
+
+    weatherInfo.appendChild(card);
+
 });
 
 

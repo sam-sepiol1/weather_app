@@ -148,6 +148,12 @@ a:hover {
 .search--form_input {
   padding: 0.5rem;
 }
+.search--form_buttons {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  justify-content: space-between;
+}
 .search--form_button {
   padding: 0.5rem;
   cursor: pointer;
@@ -158,6 +164,7 @@ a:hover {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
+  gap: 1rem;
 }
 
 .weather--card {

@@ -131,7 +131,7 @@ a:hover {
 
 .header--title {
   text-align: center;
-  color: #E9E8E8;
+  color: #e9e8e8;
 }
 
 .search {
@@ -147,6 +147,11 @@ a:hover {
 }
 .search--form_input {
   padding: 0.5rem;
+  border-radius: 2rem;
+  border: none;
+  background-color: #e9e8e8;
+  color: #20262E;
+  width: 100%;
 }
 .search--form_buttons {
   display: flex;
@@ -155,9 +160,14 @@ a:hover {
   justify-content: space-between;
 }
 .search--form_button {
-  padding: 0.5rem;
+  color: #e9e8e8;
+  background-color: #CD5888;
+  padding: 1rem 0.5rem;
   cursor: pointer;
   width: 50%;
+}
+.search--form_button:hover {
+  color: #CD5888;
 }
 
 .weather {
@@ -169,7 +179,7 @@ a:hover {
 
 .weather--card {
   background-color: rgba(255, 255, 255, 0.1);
-  color: #E9E8E8;
+  color: #e9e8e8;
   border-radius: 0.5rem;
   padding: 2rem;
   text-align: center;
@@ -188,7 +198,7 @@ a:hover {
 .footer {
   text-align: center;
   padding: 1rem 0;
-  color: #E9E8E8;
+  color: #e9e8e8;
   position: fixed;
   bottom: 0;
   width: 100%;

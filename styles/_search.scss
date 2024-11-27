@@ -1,3 +1,4 @@
+@use "./colors" as *;
 .search {
 	display: flex;
 	justify-content: center;
@@ -12,6 +13,11 @@
 
     &--form_input {
         padding: 0.5rem;
+        border-radius: 2rem;
+        border: none;
+        background-color: $color-primary;
+        color: $color-quaternary;
+        width: 100%;
     }
 
     &--form_buttons {
@@ -22,8 +28,14 @@
     }
 
     &--form_button {
-        padding: 0.5rem;
+        color: $color-primary;
+        background-color: $color-secondary;
+        padding: 1rem 0.5rem;
         cursor: pointer;
         width: 50%;
+
+        &:hover {
+            color: $color-secondary;
+        }
     }
 }

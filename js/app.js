@@ -171,7 +171,3 @@ compareButton.addEventListener('click', async (e) => {
     weatherInfo.appendChild(card);
 
 });
-
-
-    
-

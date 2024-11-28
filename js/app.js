@@ -11,16 +11,26 @@ let city_name = "";
 
 async function getCities(city_name) {
     API_CITIES_URL = `https://13-weather-api.vercel.app/cities/${city_name}`;
-    const response = await fetch(API_CITIES_URL);
-    const data = await response.json();
-    return data;
+    try {
+        const response = await fetch(API_CITIES_URL);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
 }
 
 async function getWeather(city_name) {
     API_WEATHER_URL = `https://13-weather-api.vercel.app/weather/${city_name}`;
-    const response = await fetch(API_WEATHER_URL);
-    const weather = await response.json();
-    return weather;
+    try {
+        const response = await fetch(API_WEATHER_URL);
+        const weather = await response.json();
+        return weather;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
 }
 
 async function getFlags() {
@@ -97,10 +107,8 @@ searchInput.addEventListener('keyup', async (e) => {
 });
 
 searchButton.addEventListener('click', async (e) => {
-    const previousCard = document.querySelectorAll('.weather--card');
-    if (previousCard) {
-        previousCard.remove();
-    }
+    const previousCards = document.querySelectorAll('.weather--card');
+    previousCards.forEach(card => card.remove());
     
     e.preventDefault();
     city_name = searchInput.value;
@@ -129,6 +137,7 @@ searchButton.addEventListener('click', async (e) => {
     card.appendChild(description);
 
     weatherInfo.appendChild(card);
+    searchInput.value = '';
 });
 
 compareButton.addEventListener('click', async (e) => {

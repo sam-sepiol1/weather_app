@@ -1,4 +1,4 @@
-import API_KEY from './API_KEY.js';
+let API_KEY = "e5af2674e62e506accf726c589e175a6";
 
 let API_WEATHER_URL;
 let API_CITIES_URL;
@@ -70,7 +70,6 @@ function emojiTemperature(weather) {
         default:
             return '';
     }
-    
 }
 
 function emojiFlags(weather) {    
@@ -81,8 +80,6 @@ function emojiFlags(weather) {
 }
 
 searchInput.addEventListener('keyup', async (e) => {
-
-    
     city_name = e.target.value;    
     let cities = await getCities(city_name);
 
@@ -169,5 +166,4 @@ compareButton.addEventListener('click', async (e) => {
     card.appendChild(description);
 
     weatherInfo.appendChild(card);
-
 });

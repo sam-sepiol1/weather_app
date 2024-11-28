@@ -134,10 +134,7 @@ searchButton.addEventListener('click', async (e) => {
 compareButton.addEventListener('click', async (e) => {
     e.preventDefault();
     city_name = searchInput.value;
-    let city = await getCities(city_name);
-    let lat = city[0].lat;
-    let lon = city[0].lon;
-    let weather = await getWeather(lat, lon);
+    let weather = await getWeather(city_name);
     let temperature = Math.round(weather.list[0].main.temp - 273.15);
 
 

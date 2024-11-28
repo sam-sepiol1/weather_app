@@ -10,14 +10,14 @@ const flags = await getFlags();
 let city_name = "";
 
 async function getCities(city_name) {
-    API_CITIES_URL = `https://13-weather-l0mq87u22-sam-sepiols-projects-c25eb3a9.vercel.app/cities/${city_name}`;
+    API_CITIES_URL = `https://13-weather-api.vercel.app/cities/${city_name}`;
     const response = await fetch(API_CITIES_URL);
     const data = await response.json();
     return data;
 }
 
 async function getWeather(city_name) {
-    API_WEATHER_URL = `https://13-weather-l0mq87u22-sam-sepiols-projects-c25eb3a9.vercel.app/weather/${city_name}`;
+    API_WEATHER_URL = `https://13-weather-api.vercel.app/weather/${city_name}`;
     const response = await fetch(API_WEATHER_URL);
     const weather = await response.json();
     return weather;

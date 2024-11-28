@@ -97,7 +97,7 @@ searchInput.addEventListener('keyup', async (e) => {
 });
 
 searchButton.addEventListener('click', async (e) => {
-    const previousCard = document.querySelector('.weather--card');
+    const previousCard = document.querySelectorAll('.weather--card');
     if (previousCard) {
         previousCard.remove();
     }

@@ -1,5 +1,3 @@
-let API_KEY = "e5af2674e62e506accf726c589e175a6";
-
 let API_WEATHER_URL;
 let API_CITIES_URL;
 
@@ -12,15 +10,14 @@ const flags = await getFlags();
 let city_name = "";
 
 async function getCities(city_name) {
-    API_CITIES_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${city_name}&limit=10&appid=${API_KEY}`;
+    API_CITIES_URL = `https://13-weather-api.vercel.app/cities/${city_name}`;
     const response = await fetch(API_CITIES_URL);
     const data = await response.json();
     return data;
-    
 }
 
-async function getWeather(lat, lon) {
-    API_WEATHER_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+async function getWeather(city_name) {
+    API_WEATHER_URL = `https://13-weather-api.vercel.app/weather/${city_name}`;
     const response = await fetch(API_WEATHER_URL);
     const weather = await response.json();
     return weather;
@@ -107,10 +104,8 @@ searchButton.addEventListener('click', async (e) => {
     
     e.preventDefault();
     city_name = searchInput.value;
-    let city = await getCities(city_name);
-    let lat = city[0].lat;
-    let lon = city[0].lon;
-    let weather = await getWeather(lat, lon);
+    let weather = await getWeather(city_name);
+    console.table(weather);
     let temperature = Math.round(weather.list[0].main.temp - 273.15);
 
 

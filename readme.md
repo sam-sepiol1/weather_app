@@ -18,6 +18,10 @@ The app display a search bar and the user types the city they want. They have tw
 Search : search and display the weather. 
 Compare : search adn display the weather without replacing the previous search.
 
+## Live Project 
+
+Go to https://weather-app-zeta-inky.vercel.app/ to see the project live
+
 ## Collaboration 
 
 This project is open to collaboration ( non commercial only ). Fork the repository and open pull request.

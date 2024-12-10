@@ -17,7 +17,7 @@ async function getCities(city_name) {
         return data;
     } catch (error) {
         console.error(error);
-        return null;
+        return;
     }
 }
 
@@ -29,7 +29,7 @@ async function getWeather(city_name) {
         return weather;
     } catch (error) {
         console.error(error);
-        return null;
+        return;
     }
 }
 

@@ -127,6 +127,7 @@ a:hover {
 
 .header {
   padding: 2rem 1rem;
+  min-height: 3em;
 }
 
 .header--title {
@@ -146,7 +147,7 @@ a:hover {
   gap: 1rem;
 }
 .search--form_input {
-  padding: 0.5rem;
+  padding: 1rem;
   border-radius: 2rem;
   border: none;
   background-color: #e9e8e8;
@@ -165,16 +166,26 @@ a:hover {
   padding: 1rem 0.5rem;
   cursor: pointer;
   width: 50%;
+  border-radius: 2rem;
+  border: none;
 }
 .search--form_button:hover {
   background-color: #913175;
 }
 
 .weather {
-  margin-top: 2rem;
+  padding: 2rem;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: row;
   gap: 1rem;
+}
+@media (max-width: 768px) {
+  .weather {
+    flex-direction: column;
+    padding: 1rem;
+  }
 }
 
 .weather--card {
@@ -199,9 +210,8 @@ a:hover {
   text-align: center;
   padding: 1rem 0;
   color: #e9e8e8;
-  position: fixed;
-  bottom: 0;
   width: 100%;
+  min-height: 3em;
 }
 .footer--text {
   font-size: 1.2rem;
@@ -209,6 +219,10 @@ a:hover {
 
 body {
   background-color: #20262E;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 /*# sourceMappingURL=style.css.map */

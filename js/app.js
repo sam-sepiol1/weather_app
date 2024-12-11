@@ -167,4 +167,5 @@ compareButton.addEventListener('click', async (e) => {
     card.appendChild(description);
 
     weatherInfo.appendChild(card);
+    searchInput.value = '';
 });

@@ -144,6 +144,33 @@ function time() {
     document.querySelector('.clock--time').textContent = timeString;
 }
 
+async function displayLocationWeather() {
+    const weather = await getLocationWeather();
+    const temperature = Math.round(weather.list[0].main.temp - 273.15);
+    const city_name = weather.city.name + ', ' + weather.city.country;
+
+    let card = document.createElement('div');
+    card.classList.add('weather--card');
+
+    let title = document.createElement('h2');
+    title.classList.add('weather--card_title');
+    title.textContent = city_name + ' ' + emojiFlags(weather);
+
+    let temp = document.createElement('p');
+    temp.classList.add('weather--card_temp');
+    temp.textContent = emojiTemperature(weather) + ' ' + temperature + '°C';
+
+    let description = document.createElement('p');
+    description.classList.add('weather--card_description');
+    description.textContent = emojiWeather(weather) + ' ' + weather.list[0].weather[0].description;
+
+    card.appendChild(title);
+    card.appendChild(temp);
+    card.appendChild(description);
+
+    weatherInfo.appendChild(card);
+}
+
 searchInput.addEventListener('keyup', async (e) => {
     city_name = e.target.value;    
     let cities = await getCities(city_name);
@@ -227,37 +254,12 @@ compareButton.addEventListener('click', async (e) => {
     searchInput.value = '';
 });
 
-async function displayLocationWeather() {
-    const weather = await getLocationWeather();
-    const temperature = Math.round(weather.list[0].main.temp - 273.15);
-    const city_name = weather.city.name + ', ' + weather.city.country;
 
-    let card = document.createElement('div');
-    card.classList.add('weather--card');
-
-    let title = document.createElement('h2');
-    title.classList.add('weather--card_title');
-    title.textContent = city_name + ' ' + emojiFlags(weather);
-
-    let temp = document.createElement('p');
-    temp.classList.add('weather--card_temp');
-    temp.textContent = emojiTemperature(weather) + ' ' + temperature + '°C';
-
-    let description = document.createElement('p');
-    description.classList.add('weather--card_description');
-    description.textContent = emojiWeather(weather) + ' ' + weather.list[0].weather[0].description;
-
-    card.appendChild(title);
-    card.appendChild(temp);
-    card.appendChild(description);
-
-    weatherInfo.appendChild(card);
-}
 
 
 setInterval(time, 1000);
-getRandomBackground();
-getUserLocation();
-displayLocationWeather();
+await getRandomBackground();
+await getUserLocation();
+await displayLocationWeather();
 
 

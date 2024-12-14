@@ -24,7 +24,6 @@ function getUserLocation() {
         );
     });
 }
-getUserLocation();
 
 async function getCities(city_name) {
     API_CITIES_URL = `https://13-weather-api.vercel.app/cities/${city_name}`;
@@ -65,8 +64,6 @@ async function getLocationWeather() {
         return;
     }
 }
-
-getLocationWeather();
 
 async function getFlags() {
     return fetch('../json/flags.json')
@@ -146,11 +143,6 @@ function time() {
     document.querySelector('.clock--date').textContent = dateString;
     document.querySelector('.clock--time').textContent = timeString;
 }
-
-setInterval(time, 1000);
-
-getRandomBackground();
-
 
 searchInput.addEventListener('keyup', async (e) => {
     city_name = e.target.value;    
@@ -262,6 +254,10 @@ async function displayLocationWeather() {
     weatherInfo.appendChild(card);
 }
 
+
+setInterval(time, 1000);
+getRandomBackground();
+getUserLocation();
 displayLocationWeather();
 
 

@@ -133,7 +133,6 @@ a:hover {
 .header--title {
   text-align: center;
   color: #e9e8e8;
-  padding: 20px;
 }
 
 .search {
@@ -151,7 +150,7 @@ a:hover {
   padding: 1rem;
   border-radius: 2rem;
   border: none;
-  background-color: rgba(241, 241, 241, 0.75);
+  background-color: #e9e8e8;
   color: #20262E;
   width: 100%;
 }
@@ -163,7 +162,7 @@ a:hover {
 }
 .search--form_button {
   color: #e9e8e8;
-  background-color: rgba(51, 51, 51, 0.5);
+  background-color: #CD5888;
   padding: 1rem 0.5rem;
   cursor: pointer;
   width: 50%;
@@ -171,7 +170,7 @@ a:hover {
   border: none;
 }
 .search--form_button:hover {
-  background-color: rgba(51, 51, 51, 0.75);
+  background-color: #913175;
 }
 
 .weather {

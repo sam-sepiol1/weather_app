@@ -258,8 +258,8 @@ compareButton.addEventListener('click', async (e) => {
 
 
 setInterval(time, 1000);
-await getRandomBackground();
-await getUserLocation();
-await displayLocationWeather();
+getRandomBackground();
+getUserLocation();
+displayLocationWeather();
 
 

@@ -145,30 +145,34 @@ function time() {
 }
 
 async function displayLocationWeather() {
-    const weather = await getLocationWeather();
-    const temperature = Math.round(weather.list[0].main.temp - 273.15);
-    const city_name = weather.city.name + ', ' + weather.city.country;
+    try {
+        const weather = await getLocationWeather();
+        const temperature = Math.round(weather.list[0].main.temp - 273.15);
+        const city_name = weather.city.name + ', ' + weather.city.country;
 
-    let card = document.createElement('div');
-    card.classList.add('weather--card');
+        let card = document.createElement('div');
+        card.classList.add('weather--card');
 
-    let title = document.createElement('h2');
-    title.classList.add('weather--card_title');
-    title.textContent = city_name + ' ' + emojiFlags(weather);
+        let title = document.createElement('h2');
+        title.classList.add('weather--card_title');
+        title.textContent = city_name + ' ' + emojiFlags(weather);
 
-    let temp = document.createElement('p');
-    temp.classList.add('weather--card_temp');
-    temp.textContent = emojiTemperature(weather) + ' ' + temperature + '°C';
+        let temp = document.createElement('p');
+        temp.classList.add('weather--card_temp');
+        temp.textContent = emojiTemperature(weather) + ' ' + temperature + '°C';
 
-    let description = document.createElement('p');
-    description.classList.add('weather--card_description');
-    description.textContent = emojiWeather(weather) + ' ' + weather.list[0].weather[0].description;
+        let description = document.createElement('p');
+        description.classList.add('weather--card_description');
+        description.textContent = emojiWeather(weather) + ' ' + weather.list[0].weather[0].description;
 
-    card.appendChild(title);
-    card.appendChild(temp);
-    card.appendChild(description);
+        card.appendChild(title);
+        card.appendChild(temp);
+        card.appendChild(description);
 
-    weatherInfo.appendChild(card);
+        weatherInfo.appendChild(card);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 searchInput.addEventListener('keyup', async (e) => {

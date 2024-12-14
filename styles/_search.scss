@@ -15,7 +15,7 @@
         padding: 1rem;
         border-radius: 2rem;
         border: none;
-        background-color: $color-primary;
+        background-color: rgba(241, 241, 241, 0.75);
         color: $color-quaternary;
         width: 100%;
     }
@@ -29,7 +29,7 @@
 
     &--form_button {
         color: $color-primary;
-        background-color: $color-secondary;
+        background-color: rgba(51, 51, 51, 0.5);
         padding: 1rem 0.5rem;
         cursor: pointer;
         width: 50%;
@@ -37,7 +37,7 @@
         border: none;
 
         &:hover {
-            background-color: $color-tertiary;
+            background-color: rgba(51, 51, 51, 0.75);
         }
     }
 }

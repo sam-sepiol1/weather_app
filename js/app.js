@@ -1,11 +1,14 @@
 let API_WEATHER_URL;
 let API_CITIES_URL;
+let API_IMAGE_URL;
 
 const searchInput = document.querySelector('.search--form_input');
 const searchButton = document.querySelector('.search--form_button');
 const compareButton = document.querySelector('#search--form_button_compare');
 const weatherInfo = document.querySelector('.weather');
+const background = document.querySelector('body');
 const flags = await getFlags();
+const defaultBackground = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80';
 
 let city_name = "";
 
@@ -85,6 +88,24 @@ function emojiFlags(weather) {
         return flag.emoji;
     }
 }
+
+async function getRandomBackground() {
+    API_IMAGE_URL = `https://13-weather-api.vercel.app/image`;
+    try {
+        // const response = await fetch(API_IMAGE_URL);
+        // const data = await response.json();
+        
+        // const image = data.urls.full;
+        background.style.backgroundImage = `url(${image})`;
+    } catch (error) {
+        background.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${defaultBackground})`;
+        console.error(error);
+        return;
+    }
+}
+
+getRandomBackground();
+
 
 searchInput.addEventListener('keyup', async (e) => {
     city_name = e.target.value;    
@@ -169,3 +190,4 @@ compareButton.addEventListener('click', async (e) => {
     weatherInfo.appendChild(card);
     searchInput.value = '';
 });
+

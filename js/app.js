@@ -9,8 +9,22 @@ const weatherInfo = document.querySelector('.weather');
 const background = document.querySelector('body');
 const flags = await getFlags();
 const defaultBackground = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80';
-
+const backgroundLink = document.querySelector('.footer--link');
 let city_name = "";
+
+function getUserLocation() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                return resolve([position.coords.latitude, position.coords.longitude]);
+            },
+            error => {
+                reject(error);
+            }
+        );
+    });
+}
+getUserLocation();
 
 async function getCities(city_name) {
     API_CITIES_URL = `https://13-weather-api.vercel.app/cities/${city_name}`;
@@ -35,6 +49,24 @@ async function getWeather(city_name) {
         return;
     }
 }
+
+async function getLocationWeather() {
+    const [latitude, longitude] = await getUserLocation();
+    const latitudeShort = latitude.toString().slice(0, 5);
+    const longitudeShort = longitude.toString().slice(0, 5);
+    API_WEATHER_URL = `https://13-weather-api.vercel.app/weather/${latitudeShort}/${longitudeShort}`;
+    try {
+        const response = await fetch(API_WEATHER_URL);
+        const weather = await response.json();
+                
+        return weather;
+    } catch (error) {
+        console.error(error);
+        return;
+    }
+}
+
+getLocationWeather();
 
 async function getFlags() {
     return fetch('../json/flags.json')
@@ -96,13 +128,26 @@ async function getRandomBackground() {
         // const data = await response.json();
         
         // const image = data.urls.full;
-        background.style.backgroundImage = `url(${image})`;
+        // background.style.backgroundImage = `url(${image})`;
+        background.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${defaultBackground})`;
     } catch (error) {
         background.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${defaultBackground})`;
+        backgroundLink.href = defaultBackground;
         console.error(error);
         return;
     }
 }
+
+function time() {
+    const date = new Date();
+    const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const dateString = date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    
+    document.querySelector('.clock--date').textContent = dateString;
+    document.querySelector('.clock--time').textContent = timeString;
+}
+
+setInterval(time, 1000);
 
 getRandomBackground();
 
@@ -134,7 +179,6 @@ searchButton.addEventListener('click', async (e) => {
     e.preventDefault();
     city_name = searchInput.value;
     let weather = await getWeather(city_name);
-    console.table(weather);
     let temperature = Math.round(weather.list[0].main.temp - 273.15);
 
 
@@ -190,4 +234,34 @@ compareButton.addEventListener('click', async (e) => {
     weatherInfo.appendChild(card);
     searchInput.value = '';
 });
+
+async function displayLocationWeather() {
+    const weather = await getLocationWeather();
+    const temperature = Math.round(weather.list[0].main.temp - 273.15);
+    const city_name = weather.city.name + ', ' + weather.city.country;
+
+    let card = document.createElement('div');
+    card.classList.add('weather--card');
+
+    let title = document.createElement('h2');
+    title.classList.add('weather--card_title');
+    title.textContent = city_name + ' ' + emojiFlags(weather);
+
+    let temp = document.createElement('p');
+    temp.classList.add('weather--card_temp');
+    temp.textContent = emojiTemperature(weather) + ' ' + temperature + '°C';
+
+    let description = document.createElement('p');
+    description.classList.add('weather--card_description');
+    description.textContent = emojiWeather(weather) + ' ' + weather.list[0].weather[0].description;
+
+    card.appendChild(title);
+    card.appendChild(temp);
+    card.appendChild(description);
+
+    weatherInfo.appendChild(card);
+}
+
+displayLocationWeather();
+
 

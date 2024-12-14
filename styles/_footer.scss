@@ -2,13 +2,16 @@
 
 
 .footer { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
     padding: 1rem 0;
     color: $color-primary;
     width: 100%;
     min-height: 3em;
 
-    &--text { 
-        font-size: 1.2rem;
+    &--links {
+        padding: 0 1rem;
     }
 }

@@ -7,11 +7,12 @@ import Search_Form from '@/components/Search_form';
 import Card from '@/components/Card';
 
 import { getLocation } from '@/utils/getLocation';
-import { getWeather, getLocationWeather } from '@/utils/getWeather';
+import { getWeather, getLocationWeather, emojiWeather, emojiTemperature, emojiFlags } from '@/utils/getWeather';
 
 export default function Home() {
     const [location, setLocation] = useState(null);
     const [weatherData, setWeatherData] = useState(null);
+    const [emojiFlags, setEmojiFlags] = useState(null);
 
     async function fetchLocation() {
         const location = await getLocation();
@@ -24,7 +25,7 @@ export default function Home() {
         setLocation(location);
     }
 
-    async function fetchWeather() {
+    async function fetchLocationWeather() {
         if (location) {
             const weather = await getLocationWeather(location);
             if (!weather) {
@@ -32,9 +33,9 @@ export default function Home() {
                 return;
             }
             setWeatherData(weather);
+
         }
     }
-
 
 
     useEffect(() => {
@@ -43,7 +44,7 @@ export default function Home() {
     
   
     useEffect(() => {
-        fetchWeather();
+        fetchLocationWeather();
     }, [location]);
 
     return (
@@ -52,7 +53,7 @@ export default function Home() {
                 <Clock />
                 <Search_Form />
             </div>
-                {weatherData && <Card weatherData={weatherData} />}
+                {weatherData && <Card weatherData={weatherData} emojiFlag="🇧🇪" />}
         </main>
     );
 }

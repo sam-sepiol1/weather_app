@@ -72,8 +72,10 @@ function emojiTemperature(weather) {
     }
 }
 
-function emojiFlags(weather) {
-    const flag = flags.find(flag => flag.code === weather.city.country);
+function emojiFlags(country) {
+    const flags = require('@/data/flags.json');
+    
+    const flag = flags.find(flag => flag.code === country);
     if (flag) {
         return flag.emoji;
     }

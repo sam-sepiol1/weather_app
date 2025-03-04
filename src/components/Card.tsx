@@ -38,9 +38,10 @@ interface WeatherProps {
     emojiFlag: string;
     tempEmoji: string;
     weatherEmoji: string;
+    city: string
 }
 
-export default function Card({ weatherData, emojiFlag, tempEmoji, weatherEmoji }: WeatherProps) {
+export default function Card({ weatherData, emojiFlag, tempEmoji, weatherEmoji, city }: WeatherProps) {
     if (!weatherData || !emojiFlag || !tempEmoji || !weatherEmoji) {
         return (
             <div className="flex flex-col gap-2 justify-center items-center text-center p-16 bg-slate-200/50 rounded-3xl">
@@ -50,13 +51,12 @@ export default function Card({ weatherData, emojiFlag, tempEmoji, weatherEmoji }
     }
 
     const temp = Math.round(weatherData.list[0].main.temp);
-    const city = weatherData.city.name;
     const country = weatherData.city.country;
-
+    
     return (
         <div className="flex flex-col gap-4 justify-center items-center text-center p-16 bg-slate-200/50 rounded-3xl">
             <span className="font-bold text-5xl text-white">
-                {city}, {country} {emojiFlag}
+                {city ? city : weatherData.city.name}, {country} {emojiFlag}
             </span>
             <span className="font-bold text-4xl text-white">
                 {temp}°C {tempEmoji}

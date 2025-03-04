@@ -41,6 +41,19 @@ export default function Home() {
         }
     }
 
+    async function fetchWeather(city: string) {
+        const weather = await getWeather(city);
+        if (!weather) {
+            console.log('No weather found');
+            return;
+        }
+
+        setWeatherData(weather.weather);
+        setEmojiFlag(weather.flag);
+        setTempEmoji(weather.tempEmoji);
+        setWeatherEmoji(weather.weatherEmoji);
+    }
+
     useEffect(() => {
         fetchLocation();
     }, []);
@@ -53,7 +66,7 @@ export default function Home() {
         <main className="h-screen flex flex-col gap-4 justify-center items-center">
             <div className="flex flex-col gap-4 justify-center items-center">
                 <Clock />
-                <Search_Form />
+                <Search_Form onSearch={fetchWeather} />
             </div>
             {weatherData ? (
                 <Card

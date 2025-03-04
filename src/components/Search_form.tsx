@@ -4,7 +4,11 @@ import { useState} from 'react';
 
 import Button from './Button';
 
-export default function SearchForm() {
+interface SearchFormProps { 
+    onSearch: (city: string) => void;
+}
+
+export default function SearchForm({ onSearch }: SearchFormProps) {
     const [city, setCity] = useState('');
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +25,7 @@ export default function SearchForm() {
         }
 
         if (target.name === 'search') {
-            console.log('Search for :', city);
+            onSearch(city);
         } else if (target.name === 'compare') {
             console.log('Compare city: ', city);
         }

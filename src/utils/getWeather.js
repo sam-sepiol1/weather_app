@@ -1,5 +1,5 @@
 async function getWeather(city_name) {
-    API_WEATHER_URL = `https://13-weather-api.vercel.app/weather/${city_name}`;
+    const API_WEATHER_URL = `https://13-weather-api.vercel.app/weather/${city_name}`;
     try {
         const response = await fetch(API_WEATHER_URL);
         const weather = await response.json();
@@ -20,8 +20,6 @@ async function getWeather(city_name) {
             return;
         }
 
-
-        console.log(weather, flag, tempEmoji, weatherEmoji);
         return { weather, flag, tempEmoji, weatherEmoji };
     } catch (error) {
         console.error(error);

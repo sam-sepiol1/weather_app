@@ -7,21 +7,22 @@ import Search_Form from '@/components/Search_form';
 import Card from '@/components/Card';
 
 import { getLocation } from '@/utils/getLocation';
-import { getWeather, getLocationWeather, emojiWeather, emojiTemperature, emojiFlags } from '@/utils/getWeather';
+import { getWeather, getLocationWeather } from '@/utils/getWeather';
 
 export default function Home() {
     const [location, setLocation] = useState(null);
     const [weatherData, setWeatherData] = useState(null);
-    const [emojiFlags, setEmojiFlags] = useState(null);
+    const [emojiFlag, setEmojiFlag] = useState('');
+    const [tempEmoji, setTempEmoji] = useState('');
+    const [weatherEmoji, setWeatherEmoji] = useState('');
 
     async function fetchLocation() {
         const location = await getLocation();
-       
-        
+
         if (!location) {
             console.log('No location found');
             return;
-        }        
+        }
         setLocation(location);
     }
 
@@ -32,17 +33,18 @@ export default function Home() {
                 console.log('No weather found');
                 return;
             }
-            setWeatherData(weather);
 
+            setWeatherData(weather.weather);
+            setEmojiFlag(weather.flag);
+            setTempEmoji(weather.tempEmoji);
+            setWeatherEmoji(weather.weatherEmoji);
         }
     }
-
 
     useEffect(() => {
         fetchLocation();
     }, []);
-    
-  
+
     useEffect(() => {
         fetchLocationWeather();
     }, [location]);
@@ -53,7 +55,14 @@ export default function Home() {
                 <Clock />
                 <Search_Form />
             </div>
-                {weatherData && <Card weatherData={weatherData} emojiFlag="🇧🇪" />}
+            {weatherData ? (
+                <Card
+                    weatherData={weatherData}
+                    emojiFlag={emojiFlag}
+                    tempEmoji={tempEmoji}
+                    weatherEmoji={weatherEmoji}
+                />
+            ) : null}
         </main>
     );
 }

@@ -74,7 +74,7 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
                 />
                 <datalist id="city-options">
                     {cities.map((city) => (
-                        <option key={city.id} value={city.name + ', ' + city.countryName} />
+                        <option key={`${city.id}-${city.name}`} value={city.name + ', ' + city.countryName} />
                     ))}
                 </datalist>
             <div className="buttons flex gap-2 justify-center">

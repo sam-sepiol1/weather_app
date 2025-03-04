@@ -1,2 +1,4 @@
 js/API_KEY.js
 .DS_Store
+node_modules
+.next

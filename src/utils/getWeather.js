@@ -3,7 +3,26 @@ async function getWeather(city_name) {
     try {
         const response = await fetch(API_WEATHER_URL);
         const weather = await response.json();
-        return weather;
+
+        if (!weather) {
+            console.log('No weather found');
+            return;
+        }
+
+        const country = weather.city.country;
+        const flag = await emojiFlags(country);
+
+        const tempEmoji = emojiTemperature(weather);
+        const weatherEmoji = emojiWeather(weather);
+
+        if (!tempEmoji || !weatherEmoji || !flag) {
+            console.log('No emoji found');
+            return;
+        }
+
+
+        console.log(weather, flag, tempEmoji, weatherEmoji);
+        return { weather, flag, tempEmoji, weatherEmoji };
     } catch (error) {
         console.error(error);
         return;
@@ -25,7 +44,23 @@ async function getLocationWeather(location) {
         const response = await fetch(API_WEATHER_URL);
         const weather = await response.json();
 
-        return weather;
+        if (!weather) {
+            console.log('No weather found');
+            return;
+        }
+
+        const country = weather.city.country;
+        const flag = await emojiFlags(country);
+
+        const tempEmoji = emojiTemperature(weather);
+        const weatherEmoji = emojiWeather(weather);
+
+        if (!tempEmoji || !weatherEmoji || !flag) {
+            console.log('No emoji found');
+            return;
+        }
+
+        return { weather, flag, tempEmoji, weatherEmoji };
     } catch (error) {
         console.error(error);
         return;
@@ -82,4 +117,4 @@ function emojiFlags(country) {
     return '';
 }
 
-export { getWeather, getLocationWeather, emojiWeather, emojiTemperature, emojiFlags };
+export { getWeather, getLocationWeather };

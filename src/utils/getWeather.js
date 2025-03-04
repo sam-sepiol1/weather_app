@@ -88,7 +88,7 @@ function emojiWeather(weather) {
 }
 
 function emojiTemperature(weather) {
-    let temp = weather.list[0].main.temp - 273.15;
+    let temp = weather.list[0].main.temp;
     switch (true) {
         case (temp <= 0):
             return '🥶';

@@ -1,3 +1,5 @@
+import flags from "@/data/flags.json";
+
 async function getWeather(city_name) {
     const API_WEATHER_URL = `https://13-weather-api.vercel.app/weather/${city_name}`;
     try {
@@ -106,8 +108,9 @@ function emojiTemperature(weather) {
 }
 
 function emojiFlags(country) {
-    const flags = require('@/data/flags.json');
-    
+    if (!country) {
+        return '';
+    }    
     const flag = flags.find(flag => flag.code === country);
     if (flag) {
         return flag.emoji;

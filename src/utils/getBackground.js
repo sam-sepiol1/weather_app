@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 async function getRandomBackground() {
     API_IMAGE_URL = `https://13-weather-api.vercel.app/image`;
     try {

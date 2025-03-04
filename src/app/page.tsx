@@ -15,6 +15,7 @@ export default function Home() {
     const [emojiFlag, setEmojiFlag] = useState('');
     const [tempEmoji, setTempEmoji] = useState('');
     const [weatherEmoji, setWeatherEmoji] = useState('');
+    const [city, setCity] = useState('');
 
     async function fetchLocation() {
         const location = await getLocation();
@@ -38,6 +39,7 @@ export default function Home() {
             setEmojiFlag(weather.flag);
             setTempEmoji(weather.tempEmoji);
             setWeatherEmoji(weather.weatherEmoji);
+            setCity(city)
         }
     }
 
@@ -52,6 +54,7 @@ export default function Home() {
         setEmojiFlag(weather.flag);
         setTempEmoji(weather.tempEmoji);
         setWeatherEmoji(weather.weatherEmoji);
+        setCity(city)
     }
 
     useEffect(() => {
@@ -74,6 +77,7 @@ export default function Home() {
                     emojiFlag={emojiFlag}
                     tempEmoji={tempEmoji}
                     weatherEmoji={weatherEmoji}
+                    city={city}
                 />
             ) : null}
         </main>

@@ -49,7 +49,7 @@ export default function Card({ weatherData, emojiFlag, tempEmoji, weatherEmoji }
         );
     }
 
-    const temp = weatherData.list[0].main.temp;
+    const temp = Math.round(weatherData.list[0].main.temp);
     const city = weatherData.city.name;
     const country = weatherData.city.country;
 
@@ -59,7 +59,7 @@ export default function Card({ weatherData, emojiFlag, tempEmoji, weatherEmoji }
                 {city}, {country} {emojiFlag}
             </span>
             <span className="font-bold text-4xl text-white">
-                {temp}° {tempEmoji}{' '}
+                {temp}°C {tempEmoji}
             </span>
             <span className="font-bold text-6xl text-white">
                 {weatherEmoji}
